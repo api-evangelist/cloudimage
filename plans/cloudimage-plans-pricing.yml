@@ -1,0 +1,241 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Cloudimage
+providerId: cloudimage
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Image Optimization
+- Image CDN
+- Resizing
+- Transformation
+- DAM
+- Plans
+description: >-
+  Cloudimage (by Scaleflex) prices on monthly CDN traffic (bandwidth) plus
+  included cloud storage and a yearly allowance of AI "visual operations".
+  Cloudimage does not charge for the number of optimized images or standard
+  transformations - billing is driven by delivered CDN traffic, with per-GB
+  overage above each tier. Three published tiers (Essential, Grow, Scale) plus
+  custom Enterprise. A free trial and POC option are available.
+notes: >-
+  Prices shown in EUR as published on the Cloudimage pricing page; verify the
+  current tiers, allowances, and overage rates against the live page during
+  reconciliation. Annual commitments are discounted vs. monthly.
+sources:
+- https://www.cloudimage.io/en/pricing
+- https://docs.cloudimage.io/
+plans:
+- id: cloudimage-essential
+  name: Essential
+  type: subscription
+  description: >-
+    Entry tier for a small platform or app, with 100 GB monthly CDN traffic and
+    25 GB cloud storage.
+  entries:
+  - label: Monthly Subscription
+    name: essential_base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 49 per month
+    userMultiplied: false
+  - label: CDN Traffic Included
+    name: essential_cdn
+    type: included
+    metric: bandwidth_gb
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Cloud Storage Included
+    name: essential_storage
+    type: included
+    metric: storage_gb
+    limit: 25
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Visual Operations Included
+    name: essential_visual_ops
+    type: included
+    metric: operations
+    limit: 10000
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: CDN Traffic Overage
+    name: essential_overage
+    type: usage
+    metric: bandwidth_gb
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 0.60 per GB
+    userMultiplied: false
+  elements:
+  - name: Image Transformation (URL API)
+  - name: Video Transformation
+  - name: Optimization & CDN
+  - name: Filerobot DAM
+- id: cloudimage-grow
+  name: Grow
+  type: subscription
+  description: >-
+    Mid tier with 250 GB monthly CDN traffic, 100 GB cloud storage, and a larger
+    visual-operations allowance.
+  entries:
+  - label: Monthly Subscription
+    name: grow_base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 99 per month
+    userMultiplied: false
+  - label: CDN Traffic Included
+    name: grow_cdn
+    type: included
+    metric: bandwidth_gb
+    limit: 250
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Cloud Storage Included
+    name: grow_storage
+    type: included
+    metric: storage_gb
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Visual Operations Included
+    name: grow_visual_ops
+    type: included
+    metric: operations
+    limit: 50000
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: CDN Traffic Overage
+    name: grow_overage
+    type: usage
+    metric: bandwidth_gb
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 0.40 per GB
+    userMultiplied: false
+  elements:
+  - name: Image Transformation (URL API)
+  - name: Video Transformation
+  - name: Optimization & CDN
+  - name: Filerobot DAM
+- id: cloudimage-scale
+  name: Scale
+  type: subscription
+  description: >-
+    High tier with 1,000 GB monthly CDN traffic, 250 GB cloud storage, and the
+    largest published visual-operations allowance.
+  entries:
+  - label: Monthly Subscription
+    name: scale_base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 279 per month
+    userMultiplied: false
+  - label: CDN Traffic Included
+    name: scale_cdn
+    type: included
+    metric: bandwidth_gb
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Cloud Storage Included
+    name: scale_storage
+    type: included
+    metric: storage_gb
+    limit: 250
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Visual Operations Included
+    name: scale_visual_ops
+    type: included
+    metric: operations
+    limit: 100000
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: CDN Traffic Overage
+    name: scale_overage
+    type: usage
+    metric: bandwidth_gb
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: EUR 0.15 per GB
+    userMultiplied: false
+  elements:
+  - name: Image Transformation (URL API)
+  - name: Video Transformation
+  - name: Optimization & CDN
+  - name: Filerobot DAM
+- id: cloudimage-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom volumes for CDN traffic, cloud storage, and visual operations with
+    negotiated overage and terms. Contact Scaleflex sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom CDN Traffic
+  - name: Custom Cloud Storage
+  - name: Custom Visual Operations
+  - name: Multi-CDN & SLA
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

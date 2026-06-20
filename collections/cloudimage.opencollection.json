@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloudimage API",
+    "version": "7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transform and deliver an image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{{token}}.cloudimg.io/https://samples.scaleflex.com/flat.jpg?w=400&h=300&func=crop&q=80&force_format=auto"
+          },
+          "docs": "Requests the origin image (carried as the request path) and applies resize, crop, compression, and format operations via query parameters, delivered via CDN."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transform and deliver a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{{token}}.cloudimg.io/https://samples.scaleflex.com/sample.mp4?w=640&h=360&func=fit&format=auto&bitrate=2m"
+          },
+          "docs": "On-the-fly video processing/transcoding using the same URL model (max 500 MB, 4K, first 60s)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filerobot DAM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file to the DAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.filerobot.com/{{token}}/v4/upload?folder=/folder_test",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads one or more files into the Filerobot DAM via multipart/form-data."
+        },
+        {
+          "info": {
+            "name": "Stream-upload a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.filerobot.com/{{token}}/v4/files",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "body": {
+              "type": "binary",
+              "data": ""
+            }
+          },
+          "docs": "Streams the request body into storage; useful for files larger than 500 MB."
+        },
+        {
+          "info": {
+            "name": "List and search files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filerobot.com/{{token}}/v4/files",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              }
+            ]
+          },
+          "docs": "Lists or searches files stored in the DAM."
+        },
+        {
+          "info": {
+            "name": "Get file details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filerobot.com/{{token}}/v4/files/{{uuid}}",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a single file."
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.filerobot.com/{{token}}/v4/files/{{uuid}}",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              }
+            ]
+          },
+          "docs": "Deletes a file from the DAM."
+        },
+        {
+          "info": {
+            "name": "List and search folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filerobot.com/{{token}}/v4/folders",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              }
+            ]
+          },
+          "docs": "Lists or searches folders in the DAM."
+        },
+        {
+          "info": {
+            "name": "Create a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.filerobot.com/{{token}}/v4/folders",
+            "headers": [
+              {
+                "name": "X-Filerobot-Key",
+                "value": "{{filerobotKey}}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"new-folder\",\n  \"parent\": \"/\"\n}"
+            }
+          },
+          "docs": "Creates a folder in the DAM."
+        }
+      ]
+    }
+  ]
+}

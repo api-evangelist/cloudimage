@@ -1,0 +1,98 @@
+aid: cloudimage
+name: Cloudimage
+review:
+  question: Does Cloudimage expose a documented public WebSocket or streaming (AsyncAPI-modelable) API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per the updated API Evangelist scope (2026-05-29), HTTP Server-Sent Events
+    (SSE) is in-scope for AsyncAPI modeling. Cloudimage and the Filerobot DAM
+    expose no documented SSE or WebSocket surface, so no AsyncAPI document was
+    authored. The Filerobot DAM offers a "stream upload" (HTTP PUT with
+    application/octet-stream) for large files, but this is a one-way request
+    body stream over plain REST, not an event-driven or bidirectional channel.
+findings:
+  summary: |
+    Cloudimage (by Scaleflex) is fundamentally a URL-based image and video
+    transformation and CDN service. Its primary "API" is not a JSON request/
+    response REST API but a query-parameter transformation interface: a GET
+    request to https://{token}.cloudimg.io/{origin-url} carrying the source
+    media URL as the request path, with resize, crop, format, compression,
+    filter, and watermark operations supplied as query parameters and the
+    result delivered (and cached) over a global multi-CDN. The same URL model
+    handles short videos. A companion Filerobot DAM provides a conventional
+    REST API at https://api.filerobot.com/{token}/v4 for upload and asset/
+    folder management, authenticated with the X-Filerobot-Key header. No
+    WebSocket, no SSE, and no GraphQL surface is documented. The only
+    "streaming" is a one-directional HTTP PUT body stream for large uploads.
+  interfaceModel:
+    type: URL-based transformation
+    host: https://{token}.cloudimg.io
+    note: >-
+      Operations are expressed as query parameters on a GET request; the origin
+      image/video URL is the request path. Percent-encode the origin and add
+      ci_url_encoded=1 when it contains a query string or reserved characters.
+      This is the defining characteristic of the surface and is modeled in
+      openapi/cloudimage-openapi.yml as GET /{origin} with operation parameters.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{token}.cloudimg.io
+      documented: true
+      note: URL-based image/video transformation and CDN delivery (GET with query-parameter operations).
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.filerobot.com/{token}/v4
+      documented: true
+      note: Filerobot DAM upload and asset/folder management; X-Filerobot-Key auth.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events surface is documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented for Cloudimage or the Filerobot DAM.
+  endpointsConfirmedRest:
+    - GET  https://{token}.cloudimg.io/{origin-image-url}?w=&h=&func=&q=&force_format=
+    - GET  https://{token}.cloudimg.io/{origin-video-url}?w=&h=&func=&format=&bitrate=
+    - POST https://api.filerobot.com/{token}/v4/upload
+    - PUT  https://api.filerobot.com/{token}/v4/files
+    - GET  https://api.filerobot.com/{token}/v4/files
+    - GET  https://api.filerobot.com/{token}/v4/files/{uuid}
+    - DELETE https://api.filerobot.com/{token}/v4/files/{uuid}
+    - GET  https://api.filerobot.com/{token}/v4/folders
+    - POST https://api.filerobot.com/{token}/v4/folders
+sources:
+  - url: https://docs.cloudimage.io/implementation/url-api-implementation
+    type: APIReference
+    note: Documents the {token}.cloudimg.io host and path-based origin URL with ci_url_encoded=1 for encoded origins.
+  - url: https://docs.cloudimage.io/transformations/image-operations
+    type: Documentation
+    note: Resize functions (crop/fit/cropfit/bound/boundmin/cover), gravity, crop coords, flip, rotate, trim, radius, bg_remove.
+  - url: https://docs.cloudimage.io/transformations/video-operations
+    type: Documentation
+    note: Video w/h/func, bg_color, format (auto/mp4/webm/h264/h265/vp9), bitrate; 500 MB / 4K / 60s input limits.
+  - url: https://www.cloudimage.io/en/pricing
+    type: Documentation
+    note: CDN-traffic/bandwidth + storage + visual-operations pricing tiers (Essential/Grow/Scale/Enterprise).
+  - url: https://developers.scaleflex.com/
+    type: Documentation
+    note: Filerobot DAM REST API (file/folder upload and management).
+  - url: https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api
+    type: APIReference
+    note: File API upload (POST /upload multipart), stream upload (PUT /files), X-Filerobot-Key auth.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE surface exists, so no AsyncAPI document was created.
+    The catalog models the defining URL-based transformation interface plus the
+    Filerobot DAM REST API in openapi/cloudimage-openapi.yml, and apis.yml
+    documents four sub-APIs (Image Transformation URL API, Optimization & CDN,
+    Video Transformation URL API, and Filerobot DAM Upload & Asset API).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

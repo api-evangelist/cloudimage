@@ -1,0 +1,77 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Cloudimage
+providerId: cloudimage
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Image Optimization
+- Image CDN
+- Resizing
+- Transformation
+- DAM
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Cloudimage's primary constraints are commercial quotas rather than per-second
+  request throttles: monthly CDN traffic (bandwidth) allowances, included cloud
+  storage, and a yearly allowance of AI visual operations per plan, with per-GB
+  overage above the included CDN traffic. Video transformation has documented
+  per-asset input limits (max 500 MB, up to 4K, first 60 seconds). The Filerobot
+  DAM REST API may enforce its own request limits; specific numeric per-second
+  rate limits are not publicly reconciled in this artifact.
+notes: >-
+  Confirm any per-second/per-minute request limits on the Filerobot DAM API and
+  the current plan allowances against the live documentation during
+  reconciliation. The transformation/CDN edge is governed by plan bandwidth and
+  fair-use rather than published RPS limits.
+sources:
+- https://www.cloudimage.io/en/pricing
+- https://docs.cloudimage.io/transformations/video-operations
+- https://docs.cloudimage.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: CDN Traffic (Bandwidth)
+  scope: account
+  metric: bandwidth_gb
+  limit: per-plan monthly allowance (100 / 250 / 1,000 GB; custom on Enterprise)
+  notes: Delivered CDN traffic; overage billed per GB above the plan allowance.
+- name: Cloud Storage
+  scope: account
+  metric: storage_gb
+  limit: per-plan allowance (25 / 100 / 250 GB; custom on Enterprise)
+  notes: Storage backing the Filerobot DAM.
+- name: Visual Operations
+  scope: account
+  metric: operations
+  limit: per-plan yearly allowance (10K / 50K / 100K; custom on Enterprise)
+  notes: AI/visual-AI operations (e.g. background removal, auto-tagging) consume credits.
+- name: Video Input Size
+  scope: request
+  metric: bytes
+  limit: 500 MB max per source video
+  notes: Larger videos are rejected.
+- name: Video Resolution
+  scope: request
+  metric: resolution
+  limit: up to 4K
+  notes: Documented maximum input resolution.
+- name: Video Duration
+  scope: request
+  metric: seconds
+  limit: 60 (longer videos trimmed to the first minute)
+  notes: Only the first 60 seconds are processed.
+policies:
+- name: Quota-Based
+  description: Usage is bounded by plan bandwidth, storage, and visual-operations allowances rather than per-second throttles.
+- name: Overage Billing
+  description: CDN traffic above the plan allowance is billed per GB (rate decreases on higher tiers).
+- name: Backoff Strategy
+  description: Clients calling the Filerobot DAM API should implement exponential backoff with jitter and honor Retry-After on 429.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,99 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Cloudimage
+providerId: cloudimage
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Image Optimization
+- Image CDN
+- Resizing
+- Transformation
+- DAM
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Cloudimage (by Scaleflex) spend. Cloudimage bills on a
+  subscription tier (Essential / Grow / Scale / Enterprise) that bundles a
+  monthly CDN traffic (bandwidth) allowance, cloud storage, and a yearly
+  allowance of AI visual operations. The dominant variable cost is delivered CDN
+  traffic, with per-GB overage above the plan allowance (rate decreases on
+  higher tiers). Cloudimage does not bill per image or per standard
+  transformation - master/source image count is uncapped within fair use.
+notes: >-
+  Per-GB overage rates and plan allowances are subject to change; verify against
+  the Cloudimage pricing page during reconciliation. Optimizing format (WebP/AVIF)
+  and compression directly reduces delivered bytes and therefore CDN-traffic spend.
+sources:
+- https://www.cloudimage.io/en/pricing
+- https://docs.cloudimage.io/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Scaleflex
+serviceCategory: Content Delivery and Media Optimization
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: EUR
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Cloudimage
+  ServiceCategory: Content Delivery and Media Optimization
+  ProviderName: Scaleflex
+  PublisherName: Scaleflex
+  InvoiceIssuerName: Scaleflex
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Based
+meters:
+- name: cdn_traffic_gb
+  description: Delivered CDN traffic (bandwidth) in GB; included up to the plan allowance, then billed per GB.
+  unit: gigabytes
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: cloud_storage_gb
+  description: Cloud storage consumed in the Filerobot DAM, included up to the plan allowance.
+  unit: gigabytes
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: visual_operations
+  description: AI/visual-AI operations (background removal, auto-tagging, etc.) drawn from the yearly allowance.
+  unit: operations
+  aggregation: sum
+  dimensions:
+  - account
+  - operation
+- name: subscription_fee
+  description: Recurring monthly (or annual) subscription fee for the selected plan tier.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track delivered CDN traffic against the plan allowance; watch for overage GB and storage growth.
+- name: Allocation
+  description: Use separate tokens/projects per app or brand to attribute bandwidth and storage to cost centers.
+- name: Optimization
+  description: Serve WebP/AVIF and tune quality (q) to cut delivered bytes; right-size images with the URL API and lean on CDN caching to reduce origin pulls and traffic.
+- name: Accountability
+  description: Assign plan owners; review monthly CDN-traffic overage and yearly visual-operation burn against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
