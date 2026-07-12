@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cloudimage-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: filerobotKey
+  type: apiKey
+  in: header
+  parameter: X-Filerobot-Key
+  description: Filerobot DAM API key.
+  sources:
+  - openapi/cloudimage-openapi.yml

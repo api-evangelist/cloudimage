@@ -119,6 +119,10 @@ apis:
     it supports multipart and stream upload, plus file and folder list, detail,
     rename, move, delete, and metadata operations.
 common:
+- type: DomainSecurity
+  url: security/cloudimage-domain-security.yml
+- type: Authentication
+  url: authentication/cloudimage-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/scaleflex
 - type: LinkedIn
