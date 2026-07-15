@@ -119,6 +119,8 @@ apis:
     it supports multipart and stream upload, plus file and folder list, detail,
     rename, move, delete, and metadata operations.
 common:
+- type: AgenticAccess
+  url: agentic-access/cloudimage-agentic-access.yml
 - type: DomainSecurity
   url: security/cloudimage-domain-security.yml
 - type: Authentication
