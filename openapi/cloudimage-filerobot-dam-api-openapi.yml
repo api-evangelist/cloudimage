@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Cloudimage Filerobot DAM API
+  description: Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.
+  termsOfService: https://www.cloudimage.io/en/terms-and-conditions
+  contact:
+    name: Cloudimage / Scaleflex Support
+    url: https://www.cloudimage.io/
+  version: '7'
+servers:
+- url: https://{token}.cloudimg.io
+  description: Cloudimage URL-based transformation and CDN host. {token} is the account identifier.
+  variables:
+    token:
+      default: demo
+      description: Your Cloudimage account token (subdomain).
+- url: https://api.filerobot.com/{token}/v4
+  description: Filerobot DAM upload and asset-management REST API.
+  variables:
+    token:
+      default: demo
+      description: Your Filerobot/Cloudimage account token.
+tags:
+- name: Filerobot DAM
+  description: Upload and asset-management REST endpoints.
+paths:
+  /upload:
+    post:
+      operationId: uploadFile
+      tags:
+      - Filerobot DAM
+      summary: Upload a file to the DAM
+      description: Uploads one or more files into the Filerobot DAM via multipart/form-data. Served from the Filerobot host https://api.filerobot.com/{token}/v4.
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      parameters:
+      - name: folder
+        in: query
+        description: Destination folder path within the DAM.
+        schema:
+          type: string
+        example: /folder_test
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: File uploaded; metadata for the stored asset is returned.
+      security:
+      - filerobotKey: []
+  /files:
+    get:
+      operationId: listFiles
+      tags:
+      - Filerobot DAM
+      summary: List and search files
+      description: Lists or searches files stored in the DAM.
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      responses:
+        '200':
+          description: A list of files matching the query.
+      security:
+      - filerobotKey: []
+    put:
+      operationId: streamUploadFile
+      tags:
+      - Filerobot DAM
+      summary: Stream-upload a file
+      description: Streams the request body into the storage container; useful for files larger than 500 MB. Sends application/octet-stream.
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: File stored; asset metadata returned.
+      security:
+      - filerobotKey: []
+  /files/{uuid}:
+    get:
+      operationId: getFile
+      tags:
+      - Filerobot DAM
+      summary: Get file details
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File metadata.
+      security:
+      - filerobotKey: []
+    delete:
+      operationId: deleteFile
+      tags:
+      - Filerobot DAM
+      summary: Delete a file
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File deleted.
+      security:
+      - filerobotKey: []
+  /folders:
+    get:
+      operationId: listFolders
+      tags:
+      - Filerobot DAM
+      summary: List and search folders
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      responses:
+        '200':
+          description: A list of folders.
+      security:
+      - filerobotKey: []
+    post:
+      operationId: createFolder
+      tags:
+      - Filerobot DAM
+      summary: Create a folder
+      servers:
+      - url: https://api.filerobot.com/{token}/v4
+        variables:
+          token:
+            default: demo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                parent:
+                  type: string
+      responses:
+        '200':
+          description: Folder created.
+      security:
+      - filerobotKey: []
+components:
+  securitySchemes:
+    filerobotKey:
+      type: apiKey
+      in: header
+      name: X-Filerobot-Key
+      description: Filerobot DAM API key.

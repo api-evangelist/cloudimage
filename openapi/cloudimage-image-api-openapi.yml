@@ -1,0 +1,249 @@
+openapi: 3.0.1
+info:
+  title: Cloudimage Filerobot DAM Image API
+  description: Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.
+  termsOfService: https://www.cloudimage.io/en/terms-and-conditions
+  contact:
+    name: Cloudimage / Scaleflex Support
+    url: https://www.cloudimage.io/
+  version: '7'
+servers:
+- url: https://{token}.cloudimg.io
+  description: Cloudimage URL-based transformation and CDN host. {token} is the account identifier.
+  variables:
+    token:
+      default: demo
+      description: Your Cloudimage account token (subdomain).
+- url: https://api.filerobot.com/{token}/v4
+  description: Filerobot DAM upload and asset-management REST API.
+  variables:
+    token:
+      default: demo
+      description: Your Filerobot/Cloudimage account token.
+tags:
+- name: Image
+  description: URL-based image transformation operations.
+paths:
+  /{origin}:
+    get:
+      operationId: transformImage
+      tags:
+      - Image
+      summary: Transform and deliver an image
+      description: Requests the origin image and applies transformation operations supplied as query parameters. The origin image URL is carried as the request path (e.g. https://{token}.cloudimg.io/https://samples.scaleflex.com/flat.jpg). When the origin contains a query string or reserved characters, percent-encode it and add ci_url_encoded=1.
+      parameters:
+      - name: origin
+        in: path
+        required: true
+        description: The origin (source) image URL appended as the request path.
+        schema:
+          type: string
+        example: https://samples.scaleflex.com/flat.jpg
+      - name: w
+        in: query
+        description: Target width in pixels (alias of width).
+        schema:
+          type: integer
+        example: 400
+      - name: h
+        in: query
+        description: Target height in pixels (alias of height).
+        schema:
+          type: integer
+        example: 300
+      - name: func
+        in: query
+        description: Resize function applied when both width and height are provided. crop is the default.
+        schema:
+          type: string
+          enum:
+          - crop
+          - fit
+          - cropfit
+          - bound
+          - boundmin
+          - cover
+          default: crop
+      - name: gravity
+        in: query
+        description: Focal point used when cropping. Accepts compass values ([north|south][east|west]), center, auto, smart, face, or X,Y coordinates.
+        schema:
+          type: string
+        example: smart
+      - name: org_if_sml
+        in: query
+        description: When set to 1, prevents upscaling beyond the original dimensions.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: tl_px
+        in: query
+        description: Top-left corner X,Y coordinates for a positionable crop.
+        schema:
+          type: string
+        example: 100,50
+      - name: br_px
+        in: query
+        description: Bottom-right corner X,Y coordinates for a positionable crop.
+        schema:
+          type: string
+        example: 400,300
+      - name: flip
+        in: query
+        description: Mirror the image horizontally (h), vertically (v), or both (hv).
+        schema:
+          type: string
+          enum:
+          - h
+          - v
+          - hv
+      - name: r
+        in: query
+        description: Rotate the image counterclockwise by the given number of degrees.
+        schema:
+          type: integer
+      - name: trim
+        in: query
+        description: Remove solid-color borders; value sets aggressiveness.
+        schema:
+          type: integer
+      - name: radius
+        in: query
+        description: Round image corners by the given radius (optionally with a fill color).
+        schema:
+          type: string
+      - name: force_format
+        in: query
+        description: Force the output format (alias of format / f).
+        schema:
+          type: string
+          enum:
+          - auto
+          - webp
+          - avif
+          - jpeg
+          - png
+          - gif
+          default: auto
+      - name: q
+        in: query
+        description: Output compression quality (1-100).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 80
+      - name: blur
+        in: query
+        description: Apply a Gaussian blur of the given strength.
+        schema:
+          type: integer
+      - name: sharpen
+        in: query
+        description: Apply sharpening of the given strength.
+        schema:
+          type: integer
+      - name: contrast
+        in: query
+        description: Adjust image contrast.
+        schema:
+          type: integer
+      - name: saturate
+        in: query
+        description: Adjust image saturation.
+        schema:
+          type: integer
+      - name: greyscale
+        in: query
+        description: Convert the image to greyscale when set to 1.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: pixellate
+        in: query
+        description: Apply a pixelation effect of the given strength.
+        schema:
+          type: integer
+      - name: bg_remove
+        in: query
+        description: Remove the background using AI when set to 1 (consumes a visual operation).
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: wat
+        in: query
+        description: Enable a watermark overlay when set to 1.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: wat_url
+        in: query
+        description: URL of the image to use as a watermark (defines a dynamic watermark).
+        schema:
+          type: string
+      - name: wat_text
+        in: query
+        description: Text content for a text watermark.
+        schema:
+          type: string
+      - name: wat_gravity
+        in: query
+        description: Watermark position (e.g. northeast, center).
+        schema:
+          type: string
+      - name: wat_scale
+        in: query
+        description: Watermark scale relative to the image.
+        schema:
+          type: string
+      - name: wat_pad
+        in: query
+        description: Watermark padding from the edge.
+        schema:
+          type: string
+      - name: wat_opacity
+        in: query
+        description: Watermark opacity (0-100).
+        schema:
+          type: integer
+      - name: ci_url_encoded
+        in: query
+        description: Set to 1 when the origin URL is percent-encoded in the path.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: The transformed image binary, delivered via CDN.
+          content:
+            image/webp:
+              schema:
+                type: string
+                format: binary
+            image/avif:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Origin image not found or unreachable.
+components:
+  securitySchemes:
+    filerobotKey:
+      type: apiKey
+      in: header
+      name: X-Filerobot-Key
+      description: Filerobot DAM API key.

@@ -1,0 +1,113 @@
+openapi: 3.0.1
+info:
+  title: Cloudimage Filerobot DAM Video API
+  description: Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.
+  termsOfService: https://www.cloudimage.io/en/terms-and-conditions
+  contact:
+    name: Cloudimage / Scaleflex Support
+    url: https://www.cloudimage.io/
+  version: '7'
+servers:
+- url: https://{token}.cloudimg.io
+  description: Cloudimage URL-based transformation and CDN host. {token} is the account identifier.
+  variables:
+    token:
+      default: demo
+      description: Your Cloudimage account token (subdomain).
+- url: https://api.filerobot.com/{token}/v4
+  description: Filerobot DAM upload and asset-management REST API.
+  variables:
+    token:
+      default: demo
+      description: Your Filerobot/Cloudimage account token.
+tags:
+- name: Video
+  description: URL-based video transformation and transcoding operations.
+paths:
+  /{origin}.mp4:
+    get:
+      operationId: transformVideo
+      tags:
+      - Video
+      summary: Transform and deliver a video
+      description: On-the-fly video processing and transcoding using the same URL model as images. Input is limited to 500 MB, up to 4K, and the first 60 seconds.
+      parameters:
+      - name: origin
+        in: path
+        required: true
+        description: The origin (source) video URL appended as the request path.
+        schema:
+          type: string
+        example: https://samples.scaleflex.com/sample.mp4
+      - name: w
+        in: query
+        description: Target video width in pixels (greater than 100).
+        schema:
+          type: integer
+      - name: h
+        in: query
+        description: Target video height in pixels (greater than 100).
+        schema:
+          type: integer
+      - name: func
+        in: query
+        description: Resize function applied when both width and height are provided.
+        schema:
+          type: string
+          enum:
+          - crop
+          - fit
+          - cropfit
+          - bound
+          - boundmin
+          - cover
+      - name: bg_color
+        in: query
+        description: Background (padding) color used with func=fit (hex code or color name).
+        schema:
+          type: string
+      - name: bg_img_fit
+        in: query
+        description: Use a blurred version of the video for the background/padding when set to 1.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: format
+        in: query
+        description: Output video format.
+        schema:
+          type: string
+          enum:
+          - auto
+          - mp4
+          - webm
+          - h264.mp4
+          - h265.mp4
+          - vp9.webm
+          default: auto
+      - name: bitrate
+        in: query
+        description: Compression bitrate (10k-20000k or 1m-20m).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The transcoded video binary, delivered via CDN.
+          content:
+            video/mp4:
+              schema:
+                type: string
+                format: binary
+            video/webm:
+              schema:
+                type: string
+                format: binary
+components:
+  securitySchemes:
+    filerobotKey:
+      type: apiKey
+      in: header
+      name: X-Filerobot-Key
+      description: Filerobot DAM API key.
