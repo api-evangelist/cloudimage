@@ -8,7 +8,20 @@ description: Cloudimage (by Scaleflex) is an image and video optimization, resiz
   crop, format, compression, filter, and watermark operations via query parameters,
   delivered over a global multi-CDN. A companion Filerobot DAM provides a REST upload
   and asset-management API.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Paid (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cloudimage.png
 tags:
 - Image Optimization
 - Image CDN
@@ -19,105 +32,90 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: cloudimage:cloudimage-image-transformation-api
-  name: Cloudimage Image Transformation (URL API)
+- aid: cloudimage:cloudimage-filerobot-dam-api
+  name: Cloudimage Filerobot DAM API
+  description: Upload and asset-management REST endpoints.
+  humanURL: https://docs.cloudimage.io/transformations/image-operations
+  baseURL: https://{token}.cloudimg.io
+  tags:
+  - Filerobot DAM
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudimage-filerobot-dam-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: APIReference
+    url: https://docs.cloudimage.io/implementation/url-api-implementation
+  - type: PostmanCollection
+    url: collections/cloudimage.postman_collection.json
+  - type: OpenCollection
+    url: collections/cloudimage.opencollection.json
+  - type: Documentation
+    url: https://www.cloudimage.io/
+  - type: APIReference
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/video-operations
+  - type: Documentation
+    url: https://developers.scaleflex.com/
+  - type: APIReference
+    url: https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api
+- aid: cloudimage:cloudimage-image-api
+  name: Cloudimage Image API
+  description: URL-based image transformation operations.
+  humanURL: https://docs.cloudimage.io/transformations/image-operations
+  baseURL: https://{token}.cloudimg.io
   tags:
   - Image
-  - Transformation
-  - Resizing
-  - URL API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudimage-image-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: APIReference
+    url: https://docs.cloudimage.io/implementation/url-api-implementation
+  - type: PostmanCollection
+    url: collections/cloudimage.postman_collection.json
+  - type: OpenCollection
+    url: collections/cloudimage.opencollection.json
+  - type: Documentation
+    url: https://www.cloudimage.io/
+  - type: APIReference
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/video-operations
+  - type: Documentation
+    url: https://developers.scaleflex.com/
+  - type: APIReference
+    url: https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api
+- aid: cloudimage:cloudimage-video-api
+  name: Cloudimage Video API
+  description: URL-based video transformation and transcoding operations.
   humanURL: https://docs.cloudimage.io/transformations/image-operations
   baseURL: https://{token}.cloudimg.io
-  properties:
-  - url: https://docs.cloudimage.io/transformations/image-operations
-    type: Documentation
-  - url: https://docs.cloudimage.io/implementation/url-api-implementation
-    type: APIReference
-  - url: openapi/cloudimage-openapi.yml
-    type: OpenAPI
-  - url: collections/cloudimage.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cloudimage.opencollection.json
-    type: OpenCollection
-  description: URL-based, on-the-fly image transformation. Requests carry the origin
-    image as a path on the {token}.cloudimg.io host and apply operations through query
-    parameters - resize (w, h, func=crop|fit|cropfit|bound|boundmin|cover), gravity,
-    crop coordinates, flip, rotate, trim, and rounded corners - with no backend
-    changes required.
-- aid: cloudimage:cloudimage-optimization-cdn-api
-  name: Cloudimage Optimization & CDN API
-  tags:
-  - Optimization
-  - CDN
-  - Compression
-  - Format
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.cloudimage.io/transformations/image-operations
-  baseURL: https://{token}.cloudimg.io
-  properties:
-  - url: https://www.cloudimage.io/
-    type: Documentation
-  - url: https://docs.cloudimage.io/transformations/image-operations
-    type: APIReference
-  - url: openapi/cloudimage-openapi.yml
-    type: OpenAPI
-  - url: collections/cloudimage.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cloudimage.opencollection.json
-    type: OpenCollection
-  description: Automatic format conversion (WebP, AVIF) via force_format/format, lossy
-    and lossless compression via quality (q), color and effect filters (blur, sharpen,
-    contrast, greyscale, pixellate), and image or text watermarks (wat, wat_url,
-    wat_text), all delivered through a global multi-CDN (CloudFront, Akamai, Fastly,
-    CDN Networks).
-- aid: cloudimage:cloudimage-video-transformation-api
-  name: Cloudimage Video Transformation (URL API)
   tags:
   - Video
-  - Transcoding
-  - Transformation
-  - URL API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.cloudimage.io/transformations/video-operations
-  baseURL: https://{token}.cloudimg.io
   properties:
-  - url: https://docs.cloudimage.io/transformations/video-operations
-    type: Documentation
-  - url: openapi/cloudimage-openapi.yml
-    type: OpenAPI
-  - url: collections/cloudimage.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cloudimage.opencollection.json
-    type: OpenCollection
-  description: On-the-fly video processing and transcoding for short web clips (up
-    to 500 MB, 4K, 60s) using the same URL model - resize (w, h, func), background
-    fill, format selection (auto, mp4, webm, h264/h265/vp9), and bitrate control.
-- aid: cloudimage:filerobot-dam-upload-api
-  name: Filerobot DAM Upload & Asset API
-  tags:
-  - DAM
-  - Upload
-  - Asset Management
-  - Filerobot
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.scaleflex.com/
-  baseURL: https://api.filerobot.com/{token}/v4
-  properties:
-  - url: https://developers.scaleflex.com/
-    type: Documentation
-  - url: https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api
-    type: APIReference
-  - url: openapi/cloudimage-openapi.yml
-    type: OpenAPI
-  - url: collections/cloudimage.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cloudimage.opencollection.json
-    type: OpenCollection
-  description: REST upload and digital-asset-management API for the Filerobot DAM (the
-    Scaleflex storage that backs Cloudimage). Authenticated with X-Filerobot-Key,
-    it supports multipart and stream upload, plus file and folder list, detail,
-    rename, move, delete, and metadata operations.
+  - type: OpenAPI
+    url: openapi/cloudimage-video-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: APIReference
+    url: https://docs.cloudimage.io/implementation/url-api-implementation
+  - type: PostmanCollection
+    url: collections/cloudimage.postman_collection.json
+  - type: OpenCollection
+    url: collections/cloudimage.opencollection.json
+  - type: Documentation
+    url: https://www.cloudimage.io/
+  - type: APIReference
+    url: https://docs.cloudimage.io/transformations/image-operations
+  - type: Documentation
+    url: https://docs.cloudimage.io/transformations/video-operations
+  - type: Documentation
+    url: https://developers.scaleflex.com/
+  - type: APIReference
+    url: https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api
 common:
 - type: AgenticAccess
   url: agentic-access/cloudimage-agentic-access.yml
