@@ -1,0 +1,18 @@
+{
+  "provider": "cloudimage",
+  "sources": [
+    "cloudimage-filerobot-dam-api-openapi.yml",
+    "cloudimage-image-api-openapi.yml",
+    "cloudimage-video-api-openapi.yml"
+  ],
+  "outputs": [
+    "cloudimage-filerobot-dam-api-openapi.yml",
+    "cloudimage-image-api-openapi.yml",
+    "cloudimage-video-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
