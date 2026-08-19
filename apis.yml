@@ -30,7 +30,7 @@ tags:
 - DAM
 created: '2026-06-20'
 modified: '2026-06-20'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: cloudimage:cloudimage-filerobot-dam-api
   name: Cloudimage Filerobot DAM API
