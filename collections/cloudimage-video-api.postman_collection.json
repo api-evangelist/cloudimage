@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "ce8f2738-f426-462d-841c-765170afe3ed",
+      "name": "Video",
+      "description": {
+        "content": "URL-based video transformation and transcoding operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f0ac5c6-39fd-4dd4-8e8c-b568c3e1c568",
+          "name": "Transform and deliver a video",
+          "request": {
+            "name": "Transform and deliver a video",
+            "description": {
+              "content": "On-the-fly video processing and transcoding using the same URL model as images. Input is limited to 500 MB, up to 4K, and the first 60 seconds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "{{origin}}.mp4"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "w",
+                  "value": "<integer>",
+                  "description": "Target video width in pixels (greater than 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "h",
+                  "value": "<integer>",
+                  "description": "Target video height in pixels (greater than 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "func",
+                  "value": "<string>",
+                  "description": "Resize function applied when both width and height are provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "bg_color",
+                  "value": "<string>",
+                  "description": "Background (padding) color used with func=fit (hex code or color name)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bg_img_fit",
+                  "value": "<integer>",
+                  "description": "Use a blurred version of the video for the background/padding when set to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "auto",
+                  "description": "Output video format."
+                },
+                {
+                  "disabled": false,
+                  "key": "bitrate",
+                  "value": "<string>",
+                  "description": "Compression bitrate (10k-20000k or 1m-20m)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Cloudimage account token (subdomain).",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "video/mp4"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9c076a9-67ed-449f-8c6f-5006f73ada77",
+              "name": "The transcoded video binary, delivered via CDN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "{{origin}}.mp4"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "w",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "func",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bg_color",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bg_img_fit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "bitrate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Cloudimage account token (subdomain).",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "video/mp4"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "video/mp4"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Cloudimage account token (subdomain).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "demo",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://{{token}}.cloudimg.io",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The origin (source) video URL appended as the request path.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "origin"
+    }
+  ],
+  "info": {
+    "_postman_id": "c5fa9703-8459-4fef-8185-4171cd2ecec5",
+    "name": "Cloudimage Filerobot DAM Video API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.\n\nContact Support:\n Name: Cloudimage / Scaleflex Support",
+      "type": "text/plain"
+    }
+  }
+}

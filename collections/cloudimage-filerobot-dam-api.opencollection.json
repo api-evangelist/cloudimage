@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloudimage Filerobot DAM API",
+    "version": "7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filerobot DAM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file to the DAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{token}.cloudimg.io/upload",
+            "params": [
+              {
+                "name": "folder",
+                "value": "/folder_test",
+                "type": "query",
+                "description": "Destination folder path within the DAM."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads one or more files into the Filerobot DAM via multipart/form-data. Served from the Filerobot host https://api.filerobot.com/{token}/v4."
+        },
+        {
+          "info": {
+            "name": "List and search files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{token}.cloudimg.io/files",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists or searches files stored in the DAM."
+        },
+        {
+          "info": {
+            "name": "Stream-upload a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{token}.cloudimg.io/files",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Streams the request body into the storage container; useful for files larger than 500 MB. Sends application/octet-stream."
+        },
+        {
+          "info": {
+            "name": "Get file details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{token}.cloudimg.io/files/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get file details"
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{token}.cloudimg.io/files/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a file"
+        },
+        {
+          "info": {
+            "name": "List and search folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{token}.cloudimg.io/folders",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List and search folders"
+        },
+        {
+          "info": {
+            "name": "Create a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{token}.cloudimg.io/folders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Filerobot-Key",
+              "value": "{{X-Filerobot-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a folder"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

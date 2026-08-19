@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloudimage Filerobot DAM Video API",
+    "version": "7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transform and deliver a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{token}.cloudimg.io/:origin.mp4",
+            "params": [
+              {
+                "name": "origin",
+                "value": "https://samples.scaleflex.com/sample.mp4",
+                "type": "path",
+                "description": "The origin (source) video URL appended as the request path."
+              },
+              {
+                "name": "w",
+                "value": "",
+                "type": "query",
+                "description": "Target video width in pixels (greater than 100)."
+              },
+              {
+                "name": "h",
+                "value": "",
+                "type": "query",
+                "description": "Target video height in pixels (greater than 100)."
+              },
+              {
+                "name": "func",
+                "value": "",
+                "type": "query",
+                "description": "Resize function applied when both width and height are provided."
+              },
+              {
+                "name": "bg_color",
+                "value": "",
+                "type": "query",
+                "description": "Background (padding) color used with func=fit (hex code or color name)."
+              },
+              {
+                "name": "bg_img_fit",
+                "value": "",
+                "type": "query",
+                "description": "Use a blurred version of the video for the background/padding when set to 1."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output video format."
+              },
+              {
+                "name": "bitrate",
+                "value": "",
+                "type": "query",
+                "description": "Compression bitrate (10k-20000k or 1m-20m)."
+              }
+            ]
+          },
+          "docs": "On-the-fly video processing and transcoding using the same URL model as images. Input is limited to 500 MB, up to 4K, and the first 60 seconds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

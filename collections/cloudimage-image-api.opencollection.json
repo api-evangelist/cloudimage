@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloudimage Filerobot DAM Image API",
+    "version": "7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transform and deliver an image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{token}.cloudimg.io/:origin",
+            "params": [
+              {
+                "name": "origin",
+                "value": "https://samples.scaleflex.com/flat.jpg",
+                "type": "path",
+                "description": "The origin (source) image URL appended as the request path."
+              },
+              {
+                "name": "w",
+                "value": "400",
+                "type": "query",
+                "description": "Target width in pixels (alias of width)."
+              },
+              {
+                "name": "h",
+                "value": "300",
+                "type": "query",
+                "description": "Target height in pixels (alias of height)."
+              },
+              {
+                "name": "func",
+                "value": "",
+                "type": "query",
+                "description": "Resize function applied when both width and height are provided. crop is the default."
+              },
+              {
+                "name": "gravity",
+                "value": "smart",
+                "type": "query",
+                "description": "Focal point used when cropping. Accepts compass values ([north|south][east|west]), center, auto, smart, face, or X,Y coordinates."
+              },
+              {
+                "name": "org_if_sml",
+                "value": "",
+                "type": "query",
+                "description": "When set to 1, prevents upscaling beyond the original dimensions."
+              },
+              {
+                "name": "tl_px",
+                "value": "100,50",
+                "type": "query",
+                "description": "Top-left corner X,Y coordinates for a positionable crop."
+              },
+              {
+                "name": "br_px",
+                "value": "400,300",
+                "type": "query",
+                "description": "Bottom-right corner X,Y coordinates for a positionable crop."
+              },
+              {
+                "name": "flip",
+                "value": "",
+                "type": "query",
+                "description": "Mirror the image horizontally (h), vertically (v), or both (hv)."
+              },
+              {
+                "name": "r",
+                "value": "",
+                "type": "query",
+                "description": "Rotate the image counterclockwise by the given number of degrees."
+              },
+              {
+                "name": "trim",
+                "value": "",
+                "type": "query",
+                "description": "Remove solid-color borders; value sets aggressiveness."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Round image corners by the given radius (optionally with a fill color)."
+              },
+              {
+                "name": "force_format",
+                "value": "",
+                "type": "query",
+                "description": "Force the output format (alias of format / f)."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Output compression quality (1-100)."
+              },
+              {
+                "name": "blur",
+                "value": "",
+                "type": "query",
+                "description": "Apply a Gaussian blur of the given strength."
+              },
+              {
+                "name": "sharpen",
+                "value": "",
+                "type": "query",
+                "description": "Apply sharpening of the given strength."
+              },
+              {
+                "name": "contrast",
+                "value": "",
+                "type": "query",
+                "description": "Adjust image contrast."
+              },
+              {
+                "name": "saturate",
+                "value": "",
+                "type": "query",
+                "description": "Adjust image saturation."
+              },
+              {
+                "name": "greyscale",
+                "value": "",
+                "type": "query",
+                "description": "Convert the image to greyscale when set to 1."
+              },
+              {
+                "name": "pixellate",
+                "value": "",
+                "type": "query",
+                "description": "Apply a pixelation effect of the given strength."
+              },
+              {
+                "name": "bg_remove",
+                "value": "",
+                "type": "query",
+                "description": "Remove the background using AI when set to 1 (consumes a visual operation)."
+              },
+              {
+                "name": "wat",
+                "value": "",
+                "type": "query",
+                "description": "Enable a watermark overlay when set to 1."
+              },
+              {
+                "name": "wat_url",
+                "value": "",
+                "type": "query",
+                "description": "URL of the image to use as a watermark (defines a dynamic watermark)."
+              },
+              {
+                "name": "wat_text",
+                "value": "",
+                "type": "query",
+                "description": "Text content for a text watermark."
+              },
+              {
+                "name": "wat_gravity",
+                "value": "",
+                "type": "query",
+                "description": "Watermark position (e.g. northeast, center)."
+              },
+              {
+                "name": "wat_scale",
+                "value": "",
+                "type": "query",
+                "description": "Watermark scale relative to the image."
+              },
+              {
+                "name": "wat_pad",
+                "value": "",
+                "type": "query",
+                "description": "Watermark padding from the edge."
+              },
+              {
+                "name": "wat_opacity",
+                "value": "",
+                "type": "query",
+                "description": "Watermark opacity (0-100)."
+              },
+              {
+                "name": "ci_url_encoded",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 when the origin URL is percent-encoded in the path."
+              }
+            ]
+          },
+          "docs": "Requests the origin image and applies transformation operations supplied as query parameters. The origin image URL is carried as the request path (e.g. https://{token}.cloudimg.io/https://samples.scaleflex.com/flat.jpg). When the origin contains a query string or reserved characters, percent-encode it and add ci_url_encoded=1."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

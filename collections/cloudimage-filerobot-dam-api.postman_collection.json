@@ -1,0 +1,934 @@
+{
+  "item": [
+    {
+      "id": "c4562c13-1ef1-48e2-94b1-fd8bb33a1d3a",
+      "name": "Filerobot DAM",
+      "description": {
+        "content": "Upload and asset-management REST endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acfaa22c-b020-40ff-8aca-67cb402f82a2",
+          "name": "Upload a file to the DAM",
+          "request": {
+            "name": "Upload a file to the DAM",
+            "description": {
+              "content": "Uploads one or more files into the Filerobot DAM via multipart/form-data. Served from the Filerobot host https://api.filerobot.com/{token}/v4.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "upload"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "folder",
+                  "value": "<string>",
+                  "description": "Destination folder path within the DAM."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcc52bcb-e018-4ecc-aa42-e1603ce65762",
+              "name": "File uploaded; metadata for the stored asset is returned.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "upload"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "folder",
+                      "value": "/folder_test"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b53e902-b747-4f04-a25f-692dfa13d5ef",
+          "name": "List and search files",
+          "request": {
+            "name": "List and search files",
+            "description": {
+              "content": "Lists or searches files stored in the DAM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "files"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7e91ffec-ad84-448c-8377-6f25c21ad9e8",
+              "name": "A list of files matching the query.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "files"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06acb64d-f263-4c51-a956-df2b24effc15",
+          "name": "Stream-upload a file",
+          "request": {
+            "name": "Stream-upload a file",
+            "description": {
+              "content": "Streams the request body into the storage container; useful for files larger than 500 MB. Sends application/octet-stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "files"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "582116d5-2f1a-43f0-894b-55da3168ca8d",
+              "name": "File stored; asset metadata returned.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "files"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bf2c4ea-e313-4d27-9677-2d73db1565e9",
+          "name": "Get file details",
+          "request": {
+            "name": "Get file details",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "files",
+                ":uuid"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "380eef66-071f-4471-9189-7006c223b97d",
+              "name": "File metadata.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "files",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a76b10fe-55bf-437f-b5b9-775691f84c36",
+          "name": "Delete a file",
+          "request": {
+            "name": "Delete a file",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "files",
+                ":uuid"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4755246b-58a0-4726-bcd1-75eff0066413",
+              "name": "File deleted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "files",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "167f190a-3654-4ac7-b613-c0a65b5114c9",
+          "name": "List and search folders",
+          "request": {
+            "name": "List and search folders",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "folders"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2cfd3605-c4f6-4023-ace3-8758aee07d60",
+              "name": "A list of folders.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "folders"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81339334-3407-456f-a93b-afd078400ffc",
+          "name": "Create a folder",
+          "request": {
+            "name": "Create a folder",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":token",
+                "v4",
+                "folders"
+              ],
+              "host": [
+                "api",
+                "filerobot",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "demo",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Filerobot-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f5f2cd3-4770-4dc4-8536-9c725608346d",
+              "name": "Folder created.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":token",
+                    "v4",
+                    "folders"
+                  ],
+                  "host": [
+                    "api",
+                    "filerobot",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "demo",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Filerobot-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Cloudimage account token (subdomain).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "demo",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://{{token}}.cloudimg.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3832401e-c63c-480a-b1c6-30702d32f05e",
+    "name": "Cloudimage Filerobot DAM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.\n\nContact Support:\n Name: Cloudimage / Scaleflex Support",
+      "type": "text/plain"
+    }
+  }
+}

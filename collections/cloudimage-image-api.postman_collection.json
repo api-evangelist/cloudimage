@@ -1,0 +1,577 @@
+{
+  "item": [
+    {
+      "id": "67a9372e-7704-44b7-9dbd-7151f38b50ff",
+      "name": "Image",
+      "description": {
+        "content": "URL-based image transformation operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d75cad21-8381-4d6c-a04c-75f4bb46c981",
+          "name": "Transform and deliver an image",
+          "request": {
+            "name": "Transform and deliver an image",
+            "description": {
+              "content": "Requests the origin image and applies transformation operations supplied as query parameters. The origin image URL is carried as the request path (e.g. https://{token}.cloudimg.io/https://samples.scaleflex.com/flat.jpg). When the origin contains a query string or reserved characters, percent-encode it and add ci_url_encoded=1.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":origin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "w",
+                  "value": "<integer>",
+                  "description": "Target width in pixels (alias of width)."
+                },
+                {
+                  "disabled": false,
+                  "key": "h",
+                  "value": "<integer>",
+                  "description": "Target height in pixels (alias of height)."
+                },
+                {
+                  "disabled": false,
+                  "key": "func",
+                  "value": "crop",
+                  "description": "Resize function applied when both width and height are provided. crop is the default."
+                },
+                {
+                  "disabled": false,
+                  "key": "gravity",
+                  "value": "<string>",
+                  "description": "Focal point used when cropping. Accepts compass values ([north|south][east|west]), center, auto, smart, face, or X,Y coordinates."
+                },
+                {
+                  "disabled": false,
+                  "key": "org_if_sml",
+                  "value": "<integer>",
+                  "description": "When set to 1, prevents upscaling beyond the original dimensions."
+                },
+                {
+                  "disabled": false,
+                  "key": "tl_px",
+                  "value": "<string>",
+                  "description": "Top-left corner X,Y coordinates for a positionable crop."
+                },
+                {
+                  "disabled": false,
+                  "key": "br_px",
+                  "value": "<string>",
+                  "description": "Bottom-right corner X,Y coordinates for a positionable crop."
+                },
+                {
+                  "disabled": false,
+                  "key": "flip",
+                  "value": "<string>",
+                  "description": "Mirror the image horizontally (h), vertically (v), or both (hv)."
+                },
+                {
+                  "disabled": false,
+                  "key": "r",
+                  "value": "<integer>",
+                  "description": "Rotate the image counterclockwise by the given number of degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "trim",
+                  "value": "<integer>",
+                  "description": "Remove solid-color borders; value sets aggressiveness."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<string>",
+                  "description": "Round image corners by the given radius (optionally with a fill color)."
+                },
+                {
+                  "disabled": false,
+                  "key": "force_format",
+                  "value": "auto",
+                  "description": "Force the output format (alias of format / f)."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "80",
+                  "description": "Output compression quality (1-100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "blur",
+                  "value": "<integer>",
+                  "description": "Apply a Gaussian blur of the given strength."
+                },
+                {
+                  "disabled": false,
+                  "key": "sharpen",
+                  "value": "<integer>",
+                  "description": "Apply sharpening of the given strength."
+                },
+                {
+                  "disabled": false,
+                  "key": "contrast",
+                  "value": "<integer>",
+                  "description": "Adjust image contrast."
+                },
+                {
+                  "disabled": false,
+                  "key": "saturate",
+                  "value": "<integer>",
+                  "description": "Adjust image saturation."
+                },
+                {
+                  "disabled": false,
+                  "key": "greyscale",
+                  "value": "<integer>",
+                  "description": "Convert the image to greyscale when set to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "pixellate",
+                  "value": "<integer>",
+                  "description": "Apply a pixelation effect of the given strength."
+                },
+                {
+                  "disabled": false,
+                  "key": "bg_remove",
+                  "value": "<integer>",
+                  "description": "Remove the background using AI when set to 1 (consumes a visual operation)."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat",
+                  "value": "<integer>",
+                  "description": "Enable a watermark overlay when set to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_url",
+                  "value": "<string>",
+                  "description": "URL of the image to use as a watermark (defines a dynamic watermark)."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_text",
+                  "value": "<string>",
+                  "description": "Text content for a text watermark."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_gravity",
+                  "value": "<string>",
+                  "description": "Watermark position (e.g. northeast, center)."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_scale",
+                  "value": "<string>",
+                  "description": "Watermark scale relative to the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_pad",
+                  "value": "<string>",
+                  "description": "Watermark padding from the edge."
+                },
+                {
+                  "disabled": false,
+                  "key": "wat_opacity",
+                  "value": "<integer>",
+                  "description": "Watermark opacity (0-100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ci_url_encoded",
+                  "value": "<integer>",
+                  "description": "Set to 1 when the origin URL is percent-encoded in the path."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "origin",
+                  "description": "(Required) The origin (source) image URL appended as the request path."
+                },
+                {
+                  "description": "Your Cloudimage account token (subdomain).",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/webp"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2958262c-bd95-416e-a89c-5d263ace9475",
+              "name": "The transformed image binary, delivered via CDN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":origin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "w",
+                      "value": "400"
+                    },
+                    {
+                      "key": "h",
+                      "value": "300"
+                    },
+                    {
+                      "key": "func",
+                      "value": "crop"
+                    },
+                    {
+                      "key": "gravity",
+                      "value": "smart"
+                    },
+                    {
+                      "key": "org_if_sml",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tl_px",
+                      "value": "100,50"
+                    },
+                    {
+                      "key": "br_px",
+                      "value": "400,300"
+                    },
+                    {
+                      "key": "flip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "r",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "trim",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "force_format",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "q",
+                      "value": "80"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sharpen",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "contrast",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "saturate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "greyscale",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pixellate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bg_remove",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wat",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wat_url",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_gravity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_scale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_pad",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_opacity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ci_url_encoded",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "origin",
+                      "description": "(Required) The origin (source) image URL appended as the request path."
+                    },
+                    {
+                      "description": "Your Cloudimage account token (subdomain).",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/webp"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/webp"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4368f2f-d8ac-4e56-be8c-d165c35acd35",
+              "name": "Origin image not found or unreachable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":origin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "w",
+                      "value": "400"
+                    },
+                    {
+                      "key": "h",
+                      "value": "300"
+                    },
+                    {
+                      "key": "func",
+                      "value": "crop"
+                    },
+                    {
+                      "key": "gravity",
+                      "value": "smart"
+                    },
+                    {
+                      "key": "org_if_sml",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tl_px",
+                      "value": "100,50"
+                    },
+                    {
+                      "key": "br_px",
+                      "value": "400,300"
+                    },
+                    {
+                      "key": "flip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "r",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "trim",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "force_format",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "q",
+                      "value": "80"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sharpen",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "contrast",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "saturate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "greyscale",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pixellate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bg_remove",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wat",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wat_url",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_gravity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_scale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_pad",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wat_opacity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ci_url_encoded",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "origin",
+                      "description": "(Required) The origin (source) image URL appended as the request path."
+                    },
+                    {
+                      "description": "Your Cloudimage account token (subdomain).",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Cloudimage account token (subdomain).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "demo",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://{{token}}.cloudimg.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e2a1b4ec-f50f-42b0-9201-22b2490aa341",
+    "name": "Cloudimage Filerobot DAM Image API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.\n\nContact Support:\n Name: Cloudimage / Scaleflex Support",
+      "type": "text/plain"
+    }
+  }
+}
