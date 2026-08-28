@@ -8,6 +8,18 @@ description: Cloudimage (by Scaleflex) is an image and video optimization, resiz
   crop, format, compression, filter, and watermark operations via query parameters,
   delivered over a global multi-CDN. A companion Filerobot DAM provides a REST upload
   and asset-management API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
