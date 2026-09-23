@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloudimage Filerobot DAM Video API
-  description: Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service. Image and video operations are expressed entirely as query parameters on a GET request to the https://{token}.cloudimg.io host, where the origin media URL is carried as the request path. Operations include resizing, cropping, format conversion, compression, filters, and watermarks. A companion Filerobot DAM REST API (https://api.filerobot.com/{token}/v4) provides upload and asset management. This document models the documented public surface; it does not enumerate every one of the 50+ transformation parameters.
+  title: Cloudimage Video API
+  description: Cloudimage (by Scaleflex) is a URL-based image and video transformation, optimization, and CDN service.
   termsOfService: https://www.cloudimage.io/en/terms-and-conditions
   contact:
     name: Cloudimage / Scaleflex Support
