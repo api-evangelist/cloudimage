@@ -1,4 +1,4 @@
-# Cloudimage (cloudimage)
+# Cloudimage
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,123 +64,121 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Cloudimage (by Scaleflex) is an image and video optimization, resizing, and CDN service. Its core interface is a URL-based transformation API - you request an origin image through `https://{token}.cloudimg.io/{origin-url}` and apply resize, crop, format, compression, filter, and watermark operations via query parameters, delivered over a global multi-CDN. A companion Filerobot DAM provides a REST upload and asset-management API.
+Cloudimage (by Scaleflex) is an image and video optimization, resizing, and CDN service. Its core interface is a URL-based transformation API - you request an origin image through https://{token}.cloudimg.io/{origin-url} and apply resize, crop, format, compression, filter, and watermark operations via query parameters, delivered over a global multi-CDN. A companion Filerobot DAM provides a REST upload and asset-management API.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cloudimage/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cloudimage/refs/heads/main/apis.yml)
+**Areas:** Image Optimization · Image CDN · Resizing · Transformation · Digital Asset Management
 
-## Tags
+## Cloudimage on APIs.io
 
-- Image Optimization
-- Image CDN
-- Resizing
-- Transformation
-- DAM
+Everything profiled for Cloudimage is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cloudimage/](https://apis.io/providers/cloudimage/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Cloudimage Filerobot DAM API](https://apis.io/apis/cloudimage/cloudimage-filerobot-dam-api/) — Upload and asset-management REST endpoints.
+- [Cloudimage Image API](https://apis.io/apis/cloudimage/cloudimage-image-api/) — URL-based image transformation operations.
+- [Cloudimage Video API](https://apis.io/apis/cloudimage/cloudimage-video-api/) — URL-based video transformation and transcoding operations.
 
-## APIs
+### Published properties
 
-### Cloudimage Image Transformation (URL API)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-URL-based, on-the-fly image transformation. Requests carry the origin image as a path on the `{token}.cloudimg.io` host and apply operations through query parameters - resize (w, h, func=crop|fit|cropfit|bound|boundmin|cover), gravity, crop coordinates, flip, rotate, trim, and rounded corners - with no backend changes required.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.cloudimage.io/transformations/image-operations](https://docs.cloudimage.io/transformations/image-operations)
-- **Base URL:** `https://{token}.cloudimg.io`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Cloudimage Agentic Access](https://apis.io/agentic-access/cloudimage/cloudimage-agentic-access/)
 
-- Image
-- Transformation
-- Resizing
-- URL API
+#### Collections (4)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.cloudimage.io/transformations/image-operations)
-- [API Reference](https://docs.cloudimage.io/implementation/url-api-implementation)
-- [OpenAPI](openapi/cloudimage-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudimage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudimage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Cloudimage API](https://apis.io/collections/cloudimage/open-cloudimage/)
+- [Cloudimage Filerobot DAM API](https://apis.io/collections/cloudimage/open-cloudimage-filerobot-dam-api/)
+- [Cloudimage Filerobot DAM Image API](https://apis.io/collections/cloudimage/open-cloudimage-image-api/)
+- [Cloudimage Filerobot DAM Video API](https://apis.io/collections/cloudimage/open-cloudimage-video-api/)
 
-### Cloudimage Optimization & CDN API
+#### Security (2)
 
-Automatic format conversion (WebP, AVIF) via force_format/format, lossy and lossless compression via quality (q), color and effect filters (blur, sharpen, contrast, greyscale, pixellate), and image or text watermarks (wat, wat_url, wat_text), all delivered through a global multi-CDN (CloudFront, Akamai, Fastly, CDN Networks).
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.cloudimage.io/transformations/image-operations](https://docs.cloudimage.io/transformations/image-operations)
-- **Base URL:** `https://{token}.cloudimg.io`
+- [Cloudimage Authentication](https://apis.io/security/cloudimage/cloudimage-authentication/)
+- [Cloudimage Domain Security](https://apis.io/security/cloudimage/cloudimage-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Optimization
-- CDN
-- Compression
-- Format
+Published plans, tiers and prices.
 
-#### Properties
+- [Cloudimage Plans Pricing](https://apis.io/plans/cloudimage/cloudimage-plans-pricing/)
 
-- [Documentation](https://www.cloudimage.io/)
-- [API Reference](https://docs.cloudimage.io/transformations/image-operations)
-- [OpenAPI](openapi/cloudimage-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudimage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudimage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Cloudimage Video Transformation (URL API)
+Published request limits.
 
-On-the-fly video processing and transcoding for short web clips (up to 500 MB, 4K, 60s) using the same URL model - resize (w, h, func), background fill, format selection (auto, mp4, webm, h264/h265/vp9), and bitrate control.
+- [Cloudimage Rate Limits](https://apis.io/rate-limits/cloudimage/cloudimage-rate-limits/)
 
-- **Human URL:** [https://docs.cloudimage.io/transformations/video-operations](https://docs.cloudimage.io/transformations/video-operations)
-- **Base URL:** `https://{token}.cloudimg.io`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Video
-- Transcoding
-- Transformation
-- URL API
+- [Cloudimage Finops](https://apis.io/finops/cloudimage/cloudimage-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.cloudimage.io/transformations/video-operations)
-- [OpenAPI](openapi/cloudimage-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudimage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudimage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Filerobot DAM Upload & Asset API
-
-REST upload and digital-asset-management API for the Filerobot DAM (the Scaleflex storage that backs Cloudimage). Authenticated with X-Filerobot-Key, it supports multipart and stream upload, plus file and folder list, detail, rename, move, delete, and metadata operations.
-
-- **Human URL:** [https://developers.scaleflex.com/](https://developers.scaleflex.com/)
-- **Base URL:** `https://api.filerobot.com/{token}/v4`
-
-#### Tags
-
-- DAM
-- Upload
-- Asset Management
-- Filerobot
-
-#### Properties
-
-- [Documentation](https://developers.scaleflex.com/)
-- [API Reference](https://docs.filerobot.com/go/filerobot-documentation/en/dam-api/file-api)
-- [OpenAPI](openapi/cloudimage-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudimage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudimage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/scaleflex)
-- [LinkedIn](https://www.linkedin.com/company/scaleflex)
 - [Website](https://www.cloudimage.io/)
 - [Documentation](https://docs.cloudimage.io/)
-- [Plans](plans/cloudimage-plans-pricing.yml)
-- [Rate Limits](rate-limits/cloudimage-rate-limits.yml)
-- [Fin Ops](finops/cloudimage-finops.yml)
+- [GitHub](https://github.com/scaleflex)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cloudimage/](https://apis.io/providers/cloudimage/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cloudimage: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cloudimage/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
